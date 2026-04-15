@@ -1,5 +1,5 @@
 from player import Player
-from status import TreeStatus
+from status import Outcome
 from status import Status
 
 
@@ -9,30 +9,30 @@ from status import Status
 # returns false
 def evaluate(grid):
     if eval_diagonal(grid, Player.X):
-        grid.status = Player.X
-        grid.tree_status = TreeStatus.WIN
+        grid.status = Status.X_WON
+        grid.outcome = Outcome.WIN
         return True
 
     if eval_diagonal(grid, Player.O):
         grid.status = Status.O_WON
-        grid.tree_status = TreeStatus.WIN
+        grid.outcome = Outcome.WIN
         return True
 
     # each iteration checks one row and one column.
     for ndx in range(3):
         if eval_col(grid, ndx, Player.X) or eval_row(grid, ndx, Player.X):
-            grid.status = Player.X
-            grid.tree_status = TreeStatus.WIN
+            grid.status = Status.X_WON
+            grid.outcome = Outcome.WIN
             return True
         if eval_col(grid, ndx, Player.O) or eval_row(grid, ndx, Player.O):
             grid.status = Status.O_WON
-            grid.tree_status = TreeStatus.WIN
+            grid.outcome = Outcome.WIN
             return True
 
     # evaluate_tie assumes that no one has won yet.
     if evaluate_tie(grid):
         grid.status = Status.TIE
-        grid.tree_status = TreeStatus.TIE
+        grid.outcome = Outcome.TIE
 
     return False
 
@@ -63,11 +63,11 @@ def eval_row(grid, ndx, player):
 # tests if no row, column or diagonal can be taken by either player. assumes
 # that no one has won yet. returns true if there is a tie.
 def evaluate_tie(grid):
-    # if either diagonal can be taken by either player then its not a tie.
+    # if either diagonal can be taken by either player then it is not a tie.
     if eval_diagonal_tie(grid, Player.X) or eval_diagonal_tie(grid, Player.O):
         return False
 
-    # if any row or column can be taken by either player then its not a tie.
+    # if any row or column can be taken by either player then it is not a tie.
     for ndx in range(3):
         if eval_col_tie(grid, ndx, Player.X) or eval_row_tie(grid, ndx, Player.X):
             return False
@@ -111,7 +111,7 @@ def eval_row_tie(grid, ndx, player):
 
 
 # returns player if the location has been claimed by player or is still unclaimed.
-# otherwise returns open.
+# otherwise returns open. "pot" is "potentially claimed".
 def pot(grid, location, player):
     t = grid.spots[location] == player or grid.spots[location] == Player.OPEN
     return player if t else Player.OPEN
