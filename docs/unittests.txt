@@ -1,0 +1,35 @@
+
+Status
+
+Outcome
+    union
+    intersection
+    reverse
+    from_code
+
+Player
+    opposite
+
+evaluation
+    evaluate
+    eval_diagonal
+    eval_col
+    eval_row
+    evaluate_tie
+    eval_diagonal_tie
+    eval_col_tie
+    eval_row_tie
+    pot
+
+GameState
+    create_child
+    open_locations
+    print_tree
+    print_tree0
+    grow_tree
+    pickle_game_tree
+    restore_game_tree
+    calc_full_tree_size
+    assign_outcome
+    display_game_state
+

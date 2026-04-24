@@ -1,8 +1,7 @@
 import math
 
-from evaluation import evaluate
-from main import Grid
-from player import Player
+from src.darrought66.tic_tac_toe.evaluation import evaluate
+from . import Player, GameState
 
 
 # unit test for the evaluate method
@@ -17,7 +16,7 @@ def test_evaluate():
 
 # generates test cases for testing evaluate method.
 def test_case_01():
-    test_cases = [Grid(), Grid(), Grid(), Grid(), Grid(), Grid(), Grid(), Grid()]
+    test_cases = [GameState(), GameState(), GameState(), GameState(), GameState(), GameState(), GameState(), GameState()]
 
     ndx = 0
     test_cases[ndx].spots[(0, 0)] = Player.X
