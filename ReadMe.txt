@@ -1,16 +1,11 @@
 
 OVERVIEW
 
-The overall goal is to create a web based tic-tac-toe game as a learning experience for AWS development. The application
-requires a complete search space of all game states. This project creates the game state data. Ultimately this data will
-be stored in a DynamoDb table. It will also have a command line version of the game for testing purposes.
+The overall goal is to create a web based tic-tac-toe game as a learning experience for AWS development. The application requires a complete search space of all game states. This project creates the game state data. Ultimately this data will be stored in a DynamoDb table. It will also have a command line version of the game for testing purposes.
 
-A further project will create a REST web service that serves game states and a React web page. It will also include the
-necessary scripts to construct all the needed resources on AWS. The stack will be React, Waitress, EC2, Python 3, Flask,
-Jinja and DynamoDB. The project is available from Github but not PyPl. It was written using Python 3.14.
+A further project will create a REST web service that serves game states and a React web page. It will also include the necessary scripts to construct all the needed resources on AWS. The stack will be React, Waitress, EC2, Python 3, Flask, Jinja and DynamoDB. The project is available from Github but not PyPl. It was written using Python 3.14.
 
-In the future, projects could be developed to implement using lambdas or implement on Google Cloud or Microsoft Azure.
-It could also be a jumping off point for training a neural network.
+In the future, projects could be developed to implement using lambdas or implement on Google Cloud or Microsoft Azure. It could also be a jumping off point for training a neural network.
 
 INCLUDED
 
@@ -44,8 +39,7 @@ CONTRIBUTING
 
 I am not anticipating pull requests. Send me an email first explaining what your plan is.
 
-It is Apache license, meaning your free to use it however you wish, whether that be an example in a course, book, Udemy
-or YouTube video or start your own project doing it your way. Indeed, I would love to know if you found this useful.
+It is Apache license, meaning your free to use it however you wish, whether that be an example in a course, book, Udemy or YouTube video or start your own project doing it your way. Indeed, I would love to know if you found this useful.
 
 CONTACTS
 
