@@ -59,17 +59,17 @@ def eval_diagonal(gs: GameState.GameState, player: Player) -> bool:
 
 
 # tests if a column has been taken by a player.
-def eval_col(gs: GameState.GameState, ndx: int, player: Player) -> bool:
-    if gs.spots[loc(ndx, 0)] == gs.spots[loc(ndx, 1)] \
-            == gs.spots[loc(ndx, 2)] == player:
+def eval_col(gs: GameState.GameState, col: int, player: Player) -> bool:
+    if gs.spots[loc(0, col)] == gs.spots[loc(1, col)] \
+            == gs.spots[loc(2, col)] == player:
         return True
     return False
 
 
 # tests if a row has been taken by a player.
-def eval_row(gs: GameState.GameState, ndx: int, player: Player) -> bool:
-    if gs.spots[loc(0, ndx)] == gs.spots[loc(1, ndx)] \
-            == gs.spots[loc(2, ndx)] == player:
+def eval_row(gs: GameState.GameState, row: int, player: Player) -> bool:
+    if gs.spots[loc(row, 0)] == gs.spots[loc(row, 1)] \
+            == gs.spots[loc(row, 2)] == player:
         return True
     return False
 
@@ -110,10 +110,10 @@ def eval_diagonal_tie(gs: GameState.GameState, player: Player) -> bool:
 
 # tests if a column can be taken by a player. returns true if a win is possible, which means that the game is not tied
 # yet.
-def eval_col_tie(gs: GameState.GameState, ndx: int, player: Player) -> bool:
-    if pot(gs, loc(ndx, 0), player) \
-            == pot(gs, loc(ndx, 1), player) \
-            == pot(gs, loc(ndx, 2), player) == player:
+def eval_col_tie(gs: GameState.GameState, col: int, player: Player) -> bool:
+    if pot(gs, loc(col, 0), player) \
+            == pot(gs, loc(col, 1), player) \
+            == pot(gs, loc(col, 2), player) == player:
         return True
 
     # there might still be a tie
@@ -122,18 +122,16 @@ def eval_col_tie(gs: GameState.GameState, ndx: int, player: Player) -> bool:
 
 # tests if a row be taken by a player. returns true if a win is possible,
 # which means that the game is not tied yet.
-def eval_row_tie(gs: GameState.GameState, ndx: int, player: Player) -> bool:
-    if pot(gs, loc(0, ndx), player) \
-            == pot(gs, loc(1, ndx), player) \
-            == pot(gs, loc(2, ndx), player) == player:
+def eval_row_tie(gs: GameState.GameState, row: int, player: Player) -> bool:
+    if pot(gs, loc(0, row), player) \
+            == pot(gs, loc(1, row), player) \
+            == pot(gs, loc(2, row), player) == player:
         return True
 
     # there might still be a tie
     return False
 
 
-# returns player if the location has been claimed by player or is still unclaimed. otherwise returns open. "pot" is
-# "potentially claimed".
+# returns opposite player if that player is holding the spot. otherwise returns current player. "pot" is "potentially".
 def pot(gs: GameState.GameState, location: int, player: Player) -> Player:
-    t = gs.spots[location] == player or gs.spots[location] == Player.OPEN
-    return player if t else Player.OPEN
+    return player.opposite() if gs.spots[location] == player.opposite() else player

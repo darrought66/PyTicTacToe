@@ -1,0 +1,51 @@
+import pytest
+
+from darrought66.tic_tac_toe.GameState import GameState
+from darrought66.tic_tac_toe.Player import Player
+from darrought66.tic_tac_toe.location import loc
+
+
+@pytest.fixture
+def root_gs():
+    root_gs = GameState()
+    return root_gs
+
+
+@pytest.fixture
+def child(root_gs):
+    root_gs.create_child(loc(1, 1), Player.X)
+    child = root_gs.get_child_by_location(loc(1, 1))
+    return child
+
+
+def test_game_state_01(root_gs, child):
+    assert child.current_player == Player.X
+    return
+
+
+def test_game_state_02(root_gs, child):
+    assert child.current_location == loc(1, 1)
+    return
+
+
+def test_game_state_03(root_gs, child):
+    assert child.parent == root_gs
+    return
+
+
+def test_game_state_04(root_gs, child):
+    assert child.spots[loc(1, 1)] == Player.X
+    return
+
+
+def test_game_state_05(root_gs, child):
+    assert len(root_gs.open_locations()) == 9
+    assert len(child.open_locations()) == 8
+    return
+
+
+def test_game_state_06(root_gs, child):
+    assert child is not None
+    print(str(child))
+    assert str(child) == "(??? ___ ___ 4 X)  [- - -] [- X -] [- - -]"
+    return

@@ -77,8 +77,6 @@ def minimax(gs: GameState, child: GameState) -> GameState:
 
 # debugging. prints out the solution space for visual inspection.
 if __name__ == '__main__':
-    Outcome.define_singletons()
-
     # create the solution space
     root_gs = GameState()
     grow_tree(root_gs, Player.X, 0)

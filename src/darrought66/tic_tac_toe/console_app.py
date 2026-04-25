@@ -160,8 +160,6 @@ def machines_turn(gs: GameState) -> GameState:
 
 if __name__ == '__main__':
 
-    Outcome.define_singletons()
-
     print("Let's Play Tic Tac Toe")
 
     # create the solution space

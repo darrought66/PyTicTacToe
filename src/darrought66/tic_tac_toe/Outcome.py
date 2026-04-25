@@ -1,29 +1,24 @@
+from enum import Enum
+
+
 # Outcome is the minimax value for a game state. it represents the outcome if the other player makes the optimal choice.
 # Outcome is also used for game state range. range is the union of child outcomes. it indicates which choices offer
 # improved outcome if the other player makes a suboptimal choice.
-class Outcome:
+class Outcome(Enum):
+    WIN = "W__"
+    TIE_OR_BETTER = "WT_"
+    TIE = "_T_"
+    ANY = "WTL"
+    WIN_OR_LOSE = "W_L"
+    TIE_OR_WORSE = "_TL"
+    LOSE = "__L"
+    NONE = "___"  # only occurs before a variable is initialized.
 
-    # call once to create singleton values.
+    # these are ordered from worst to best. the purpose is to convert a singleton into an ordinal.
     @classmethod
-    def define_singletons(cls):
-
-        # sort by worst outcome, then subsort by best outcome
-        cls.WIN = Outcome("W__")
-        cls.TIE_OR_BETTER = Outcome("WT_")
-        cls.TIE = Outcome("_T_")
-        cls.ANY = Outcome("WTL")
-        cls.WIN_OR_LOSE = Outcome("W_L")
-        cls.TIE_OR_WORSE = Outcome("_TL")
-        cls.LOSE = Outcome("__L")
-        # NONE only occurs before a variable is initialized.
-        cls.NONE = Outcome("___")
-
-        # these are ordered from worst to best. the purpose is to convert a singleton into an ordinal.
-        cls.values = [cls.NONE, cls.LOSE, cls.TIE_OR_WORSE,
-                      cls.WIN_OR_LOSE, cls.ANY, cls.TIE,
-                      cls.TIE_OR_BETTER, cls.WIN]
-
-        return
+    def ordinal(cls, outcome):
+        return [Outcome.NONE, Outcome.LOSE, Outcome.TIE_OR_WORSE, Outcome.WIN_OR_LOSE, Outcome.ANY, Outcome.TIE,
+                Outcome.TIE_OR_BETTER, Outcome.WIN].index(outcome)
 
     # used to create singletons
     def __init__(self, code: str):
@@ -38,7 +33,7 @@ class Outcome:
     @classmethod
     def from_str(cls, desc: str) -> Outcome:
 
-        for s in Outcome.values:
+        for s in Outcome:
             if desc == s.code:
                 return s
 
@@ -80,4 +75,4 @@ class Outcome:
     # return true if P is preferable to Q
     @classmethod
     def is_better(cls, p: Outcome, q: Outcome) -> bool:
-        return cls.values.index(p) < cls.values.index(q)
+        return cls.ordinal(p) < cls.ordinal(q)
