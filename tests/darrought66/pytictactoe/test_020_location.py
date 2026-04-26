@@ -1,4 +1,4 @@
-from darrought66.tic_tac_toe.location import loc, col, row
+from darrought66.pytictactoe.location import loc, col, row
 
 
 def test_loc_01():

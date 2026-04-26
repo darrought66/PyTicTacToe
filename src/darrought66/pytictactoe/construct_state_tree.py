@@ -1,8 +1,8 @@
-from darrought66.tic_tac_toe.GameState import GameState
-from darrought66.tic_tac_toe.Outcome import Outcome
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.Status import Status
-from darrought66.tic_tac_toe.debug_test_util import print_tree
+from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.Outcome import Outcome
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.Status import Status
+from darrought66.pytictactoe.debug_test_util import print_tree
 
 
 # these methods construct the solution space, which is a doubly linked tree of GameState objects.

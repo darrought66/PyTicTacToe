@@ -3,9 +3,9 @@ from math import factorial
 from pympler import asizeof
 import math
 import time
-from darrought66.tic_tac_toe.GameState import GameState
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.construct_state_tree import grow_tree, assign_outcome
+from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.construct_state_tree import grow_tree, assign_outcome
 
 # 363 megabytes
 def print_size():

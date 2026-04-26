@@ -1,4 +1,4 @@
-from darrought66.tic_tac_toe.GameState import GameState
+from darrought66.pytictactoe.GameState import GameState
 
 
 # prints a tree of game states

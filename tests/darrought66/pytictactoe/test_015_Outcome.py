@@ -1,4 +1,4 @@
-from darrought66.tic_tac_toe.Outcome import Outcome
+from darrought66.pytictactoe.Outcome import Outcome
 
 
 def test_from_str_01():

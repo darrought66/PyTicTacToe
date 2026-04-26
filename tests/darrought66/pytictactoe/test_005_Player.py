@@ -1,4 +1,4 @@
-from darrought66.tic_tac_toe.Player import Player
+from darrought66.pytictactoe.Player import Player
 
 
 def test_from_str_01():

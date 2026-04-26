@@ -1,8 +1,8 @@
-from darrought66.tic_tac_toe.Outcome import Outcome
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.Status import Status
-from darrought66.tic_tac_toe.evaluation import evaluate
-from darrought66.tic_tac_toe.location import loc
+from darrought66.pytictactoe.Outcome import Outcome
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.Status import Status
+from darrought66.pytictactoe.evaluation import evaluate
+from darrought66.pytictactoe.location import loc
 
 
 # the 3 by 3 play area (spots) plus all associated state. this class is used as a node in a tree of all possible moves

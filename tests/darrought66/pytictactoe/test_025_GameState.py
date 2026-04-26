@@ -1,8 +1,8 @@
 import pytest
 
-from darrought66.tic_tac_toe.GameState import GameState
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.location import loc
+from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.location import loc
 
 
 @pytest.fixture

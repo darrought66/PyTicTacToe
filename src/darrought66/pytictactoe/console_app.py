@@ -1,11 +1,11 @@
 import random
 
-from darrought66.tic_tac_toe.GameState import GameState
-from darrought66.tic_tac_toe.Outcome import Outcome
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.Status import Status
-from darrought66.tic_tac_toe.construct_state_tree import grow_tree, assign_outcome
-from darrought66.tic_tac_toe.location import loc
+from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.Outcome import Outcome
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.Status import Status
+from darrought66.pytictactoe.construct_state_tree import grow_tree, assign_outcome
+from darrought66.pytictactoe.location import loc
 
 
 # a command line version of the game for testing and basic use. this version generates and uses the solution space.

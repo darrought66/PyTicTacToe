@@ -1,7 +1,7 @@
 import pytest
 
-from darrought66.tic_tac_toe.GameState import GameState
-from darrought66.tic_tac_toe.evaluation import *
+from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.evaluation import *
 
 
 @pytest.fixture

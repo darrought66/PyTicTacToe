@@ -1,8 +1,8 @@
-from darrought66.tic_tac_toe import GameState
-from darrought66.tic_tac_toe.Outcome import Outcome
-from darrought66.tic_tac_toe.Player import Player
-from darrought66.tic_tac_toe.Status import Status
-from darrought66.tic_tac_toe.location import loc
+from darrought66.pytictactoe import GameState
+from darrought66.pytictactoe.Outcome import Outcome
+from darrought66.pytictactoe.Player import Player
+from darrought66.pytictactoe.Status import Status
+from darrought66.pytictactoe.location import loc
 
 
 # called during GameState construction to assign outcome, range and status for terminal game states. now status only

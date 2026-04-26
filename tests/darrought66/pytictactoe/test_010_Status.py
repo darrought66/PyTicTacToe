@@ -1,4 +1,4 @@
-from darrought66.tic_tac_toe.Status import Status
+from darrought66.pytictactoe.Status import Status
 
 
 def test_from_str_01():
