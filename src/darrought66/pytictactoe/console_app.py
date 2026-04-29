@@ -105,9 +105,10 @@ def make_machines_choice(gs: GameState) -> int:
         return best_locations[0]
 
     # randomly pick an option
-    loc = random.randint(0, len(best_locations) - 1)
+    ndx = random.randint(0, len(best_locations) - 1)
+    loc = best_locations[ndx]
     printout[loc] = printout[loc] + " random"
-    return best_locations[loc]
+    return loc
 
 
 # printout the options that the machine chose from
@@ -183,8 +184,6 @@ if __name__ == '__main__':
             gs = machines_turn(gs)
 
         turn = turn + 1
-
-    display_game_state(gs)
 
     # print a summary (i.e. player won, lost or tied)
     print_status_msg(gs, player)

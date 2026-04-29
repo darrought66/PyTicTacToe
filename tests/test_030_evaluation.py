@@ -1,12 +1,12 @@
 import pytest
 
-from darrought66.pytictactoe.GameState import GameState
+from darrought66.pytictactoe.GameState import GameState as GameStateClass
 from darrought66.pytictactoe.evaluation import *
 
 
 @pytest.fixture
 def gs_tie():
-    gs = GameState.GameState()
+    gs = GameStateClass()
     gs.play_area[loc(0, 0)] = Player.X
     gs.play_area[loc(0, 1)] = Player.O
     gs.play_area[loc(0, 2)] = Player.O
@@ -24,49 +24,52 @@ def all_combos():
     gs = []
 
     ndx = 0
-    gs.append(GameState.GameState())
+    # pycharm insists on GameState.GameState(), even though it flags it as an error.
+    # otherwise is reports "TypeError: 'module' object is not callable"
+    # work around is to rename the class GameStateClass
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 0)] = Player.X
     gs[ndx].play_area[loc(0, 1)] = Player.X
     gs[ndx].play_area[loc(0, 2)] = Player.X
 
     ndx = 1
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(1, 0)] = Player.O
     gs[ndx].play_area[loc(1, 1)] = Player.O
     gs[ndx].play_area[loc(1, 2)] = Player.O
 
     ndx = 2
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(2, 0)] = Player.X
     gs[ndx].play_area[loc(2, 1)] = Player.X
     gs[ndx].play_area[loc(2, 2)] = Player.X
 
     ndx = 3
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 0)] = Player.O
     gs[ndx].play_area[loc(1, 0)] = Player.O
     gs[ndx].play_area[loc(2, 0)] = Player.O
 
     ndx = 4
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 1)] = Player.X
     gs[ndx].play_area[loc(1, 1)] = Player.X
     gs[ndx].play_area[loc(2, 1)] = Player.X
 
     ndx = 5
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 2)] = Player.O
     gs[ndx].play_area[loc(1, 2)] = Player.O
     gs[ndx].play_area[loc(2, 2)] = Player.O
 
     ndx = 6
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 0)] = Player.X
     gs[ndx].play_area[loc(1, 1)] = Player.X
     gs[ndx].play_area[loc(2, 2)] = Player.X
 
     ndx = 7
-    gs.append(GameState.GameState())
+    gs.append(GameStateClass())
     gs[ndx].play_area[loc(0, 2)] = Player.O
     gs[ndx].play_area[loc(1, 1)] = Player.O
     gs[ndx].play_area[loc(2, 0)] = Player.O

@@ -42,3 +42,16 @@ The game can be played on the console directly from the generated tree. This is 
 calc_size & debug_test_util
 These are both auxiliary pieces. calc_size calculates the size of the generated tree and the time it takes to generate
 it. debug_test_util allows you to print the tree out and inspect it, which is very useful for debugging.
+
+todo
+The test for a tie state does not factor in the remaining moves. For example it does not see that this is a tie, because
+X could get the first row. If it factored in that there are only two moves left, it could see that X could never that
+row.
+
+            |X|1|2|
+            |O|O|X|
+            |X|X|O|
+
+It would be awesome if the app could do coaching.
+
+make print_tree print specific branches, for example [0, 0, *]

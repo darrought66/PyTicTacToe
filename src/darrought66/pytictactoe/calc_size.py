@@ -1,14 +1,13 @@
 from math import factorial
 
 from pympler import asizeof
-import math
 import time
 from darrought66.pytictactoe.GameState import GameState
 from darrought66.pytictactoe.Player import Player
 from darrought66.pytictactoe.construct_state_tree import grow_tree, assign_outcome
 
 # 363 megabytes
-def print_size():
+def print_memory():
     root_gs = GameState()
     grow_tree(root_gs, Player.X, 0)
     assign_outcome(root_gs)
@@ -24,7 +23,7 @@ def print_max_nodes():
     return
 
 # 526,906 = 53.4%
-def print_actual_size():
+def print_actual_nodes():
     root_gs = GameState()
     grow_tree(root_gs, Player.X, 0)
     assign_outcome(root_gs)
@@ -42,7 +41,13 @@ def generation_time():
     print(change)
     return
 
-#print_size()
-#print_max_nodes()
-print_actual_size()
-#generation_time()
+if __name__ == '__main__':
+    ch = 1
+    if ch == 0:
+        print_memory()
+    elif ch == 1:
+        print_max_nodes()
+    elif ch == 2:
+        print_actual_nodes()
+    elif ch == 3:
+        generation_time()

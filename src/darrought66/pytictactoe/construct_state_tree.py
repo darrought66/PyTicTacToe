@@ -2,7 +2,7 @@ from darrought66.pytictactoe.GameState import GameState
 from darrought66.pytictactoe.Outcome import Outcome
 from darrought66.pytictactoe.Player import Player
 from darrought66.pytictactoe.Status import Status
-from darrought66.pytictactoe.debug_test_util import print_tree
+from darrought66.pytictactoe.print_tree import print_tree
 
 
 # these methods construct the solution space, which is a doubly linked tree of GameState objects.
@@ -76,6 +76,7 @@ def minimax(gs: GameState, child: GameState) -> GameState:
 
 
 # debugging. prints out the solution space for visual inspection.
+# this code was originally in print_tree.py but PyCharm could not handle the import of construct_state_tree.
 if __name__ == '__main__':
     # create the solution space
     root_gs = GameState()
