@@ -1,9 +1,7 @@
 from enum import Enum
 
 
-# Outcome is the minimax value for a game state. it represents the outcome if the other player makes the optimal choice.
-# Outcome is also used for game state range. range is the union of child outcomes. it indicates which choices offer
-# improved outcome if the other player makes a suboptimal choice.
+# outcome is used to describe ranges of game outcomes, such as required for minimax and lookahead variables.
 class Outcome(Enum):
     WIN = "W__"
     TIE_OR_BETTER = "WT_"
@@ -59,7 +57,7 @@ class Outcome(Enum):
         # convert to object
         return Outcome.from_str(s)
 
-    # convert the outcome from one players point of view to the others.
+    # convert the Outcome from one players point of view to the others.
     def reverse(self) -> Outcome:
 
         s = Outcome.NONE

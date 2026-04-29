@@ -7,15 +7,15 @@ from darrought66.pytictactoe.evaluation import *
 @pytest.fixture
 def gs_tie():
     gs = GameState.GameState()
-    gs.spots[loc(0, 0)] = Player.X
-    gs.spots[loc(0, 1)] = Player.O
-    gs.spots[loc(0, 2)] = Player.O
-    gs.spots[loc(1, 0)] = Player.O
-    gs.spots[loc(1, 1)] = Player.X
-    gs.spots[loc(1, 2)] = Player.X
-    gs.spots[loc(2, 0)] = Player.O
-    gs.spots[loc(2, 1)] = Player.X
-    gs.spots[loc(2, 2)] = Player.O
+    gs.play_area[loc(0, 0)] = Player.X
+    gs.play_area[loc(0, 1)] = Player.O
+    gs.play_area[loc(0, 2)] = Player.O
+    gs.play_area[loc(1, 0)] = Player.O
+    gs.play_area[loc(1, 1)] = Player.X
+    gs.play_area[loc(1, 2)] = Player.X
+    gs.play_area[loc(2, 0)] = Player.O
+    gs.play_area[loc(2, 1)] = Player.X
+    gs.play_area[loc(2, 2)] = Player.O
     return gs
 
 
@@ -25,51 +25,51 @@ def all_combos():
 
     ndx = 0
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 0)] = Player.X
-    gs[ndx].spots[loc(0, 1)] = Player.X
-    gs[ndx].spots[loc(0, 2)] = Player.X
+    gs[ndx].play_area[loc(0, 0)] = Player.X
+    gs[ndx].play_area[loc(0, 1)] = Player.X
+    gs[ndx].play_area[loc(0, 2)] = Player.X
 
     ndx = 1
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(1, 0)] = Player.O
-    gs[ndx].spots[loc(1, 1)] = Player.O
-    gs[ndx].spots[loc(1, 2)] = Player.O
+    gs[ndx].play_area[loc(1, 0)] = Player.O
+    gs[ndx].play_area[loc(1, 1)] = Player.O
+    gs[ndx].play_area[loc(1, 2)] = Player.O
 
     ndx = 2
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(2, 0)] = Player.X
-    gs[ndx].spots[loc(2, 1)] = Player.X
-    gs[ndx].spots[loc(2, 2)] = Player.X
+    gs[ndx].play_area[loc(2, 0)] = Player.X
+    gs[ndx].play_area[loc(2, 1)] = Player.X
+    gs[ndx].play_area[loc(2, 2)] = Player.X
 
     ndx = 3
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 0)] = Player.O
-    gs[ndx].spots[loc(1, 0)] = Player.O
-    gs[ndx].spots[loc(2, 0)] = Player.O
+    gs[ndx].play_area[loc(0, 0)] = Player.O
+    gs[ndx].play_area[loc(1, 0)] = Player.O
+    gs[ndx].play_area[loc(2, 0)] = Player.O
 
     ndx = 4
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 1)] = Player.X
-    gs[ndx].spots[loc(1, 1)] = Player.X
-    gs[ndx].spots[loc(2, 1)] = Player.X
+    gs[ndx].play_area[loc(0, 1)] = Player.X
+    gs[ndx].play_area[loc(1, 1)] = Player.X
+    gs[ndx].play_area[loc(2, 1)] = Player.X
 
     ndx = 5
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 2)] = Player.O
-    gs[ndx].spots[loc(1, 2)] = Player.O
-    gs[ndx].spots[loc(2, 2)] = Player.O
+    gs[ndx].play_area[loc(0, 2)] = Player.O
+    gs[ndx].play_area[loc(1, 2)] = Player.O
+    gs[ndx].play_area[loc(2, 2)] = Player.O
 
     ndx = 6
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 0)] = Player.X
-    gs[ndx].spots[loc(1, 1)] = Player.X
-    gs[ndx].spots[loc(2, 2)] = Player.X
+    gs[ndx].play_area[loc(0, 0)] = Player.X
+    gs[ndx].play_area[loc(1, 1)] = Player.X
+    gs[ndx].play_area[loc(2, 2)] = Player.X
 
     ndx = 7
     gs.append(GameState.GameState())
-    gs[ndx].spots[loc(0, 2)] = Player.O
-    gs[ndx].spots[loc(1, 1)] = Player.O
-    gs[ndx].spots[loc(2, 0)] = Player.O
+    gs[ndx].play_area[loc(0, 2)] = Player.O
+    gs[ndx].play_area[loc(1, 1)] = Player.O
+    gs[ndx].play_area[loc(2, 0)] = Player.O
 
     return gs
 
@@ -118,42 +118,42 @@ def test_eval_row_col_diagonal(all_combos):
 def test_eval(all_combos):
     assert evaluate(all_combos[0]) == True
     assert all_combos[0].status == Status.X_WON
-    assert all_combos[0].outcome == Outcome.WIN
-    assert all_combos[0].range == Outcome.WIN
+    assert all_combos[0].minimax == Outcome.WIN
+    assert all_combos[0].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[1]) == True
     assert all_combos[1].status == Status.O_WON
-    assert all_combos[1].outcome == Outcome.WIN
-    assert all_combos[1].range == Outcome.WIN
+    assert all_combos[1].minimax == Outcome.WIN
+    assert all_combos[1].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[2]) == True
     assert all_combos[2].status == Status.X_WON
-    assert all_combos[2].outcome == Outcome.WIN
-    assert all_combos[2].range == Outcome.WIN
+    assert all_combos[2].minimax == Outcome.WIN
+    assert all_combos[2].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[3]) == True
     assert all_combos[3].status == Status.O_WON
-    assert all_combos[3].outcome == Outcome.WIN
-    assert all_combos[3].range == Outcome.WIN
+    assert all_combos[3].minimax == Outcome.WIN
+    assert all_combos[3].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[4]) == True
     assert all_combos[4].status == Status.X_WON
-    assert all_combos[4].outcome == Outcome.WIN
-    assert all_combos[4].range == Outcome.WIN
+    assert all_combos[4].minimax == Outcome.WIN
+    assert all_combos[4].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[5]) == True
     assert all_combos[5].status == Status.O_WON
-    assert all_combos[5].outcome == Outcome.WIN
-    assert all_combos[5].range == Outcome.WIN
+    assert all_combos[5].minimax == Outcome.WIN
+    assert all_combos[5].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[6]) == True
     assert all_combos[6].status == Status.X_WON
-    assert all_combos[6].outcome == Outcome.WIN
-    assert all_combos[6].range == Outcome.WIN
+    assert all_combos[6].minimax == Outcome.WIN
+    assert all_combos[6].lookahead == Outcome.WIN
 
     assert evaluate(all_combos[7]) == True
     assert all_combos[7].status == Status.O_WON
-    assert all_combos[7].outcome == Outcome.WIN
-    assert all_combos[7].range == Outcome.WIN
+    assert all_combos[7].minimax == Outcome.WIN
+    assert all_combos[7].lookahead == Outcome.WIN
 
     return

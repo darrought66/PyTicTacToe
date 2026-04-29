@@ -19,11 +19,11 @@ def display_game_state(gs: GameState):
         for col in range(3):
             location = loc(row, col)
 
-            if gs.spots[location] == Player.OPEN:
-                # use an int as a placeholder for unoccupied spots
-                print(str(3 * row + col) + "|", end="")
+            if gs.play_area[location] == Player.OPEN:
+                # use an location as a placeholder for unoccupied spots
+                print(str(loc(row, col)) + "|", end="")
             else:
-                print(str(gs.spots[location]) + "|", end="")
+                print(str(gs.play_area[location]) + "|", end="")
 
         print("")
     print("")
@@ -58,22 +58,22 @@ def make_machines_choice(gs: GameState) -> int:
     # explain the machines choice
     printout = {}
 
-    # determine the best outcome
+    # determine the best minimax
     max_child_outcome = Outcome.NONE
     for loc in gs.open_locations():
         child = gs.get_child_by_location(loc)
         # initialize the printout
-        printout[loc] = str(child.outcome)
+        printout[loc] = str(child.minimax)
         # update max value when latest exceeds prior
-        if max_child_outcome == Outcome.NONE or Outcome.is_better(max_child_outcome, child.outcome):
-            max_child_outcome = child.outcome
+        if max_child_outcome == Outcome.NONE or Outcome.is_better(max_child_outcome, child.minimax):
+            max_child_outcome = child.minimax
 
-    # collect all choices that give that outcome
+    # collect all choices that give that minimax
     optimal_locations = []
     for loc in gs.open_locations():
         child = gs.get_child_by_location(loc)
-        # copy children with optimal outcome to list
-        if max_child_outcome == child.outcome:
+        # copy children with optimal minimax to list
+        if max_child_outcome == child.minimax:
             optimal_locations.append(loc)
             # update the printout
             printout[loc] = printout[loc] + " optimal"
@@ -82,20 +82,20 @@ def make_machines_choice(gs: GameState) -> int:
         print_machine_choice(printout)
         return optimal_locations[0]
 
-    # from the optimal choices determine the best range
+    # from the optimal choices determine the best lookahead
     max_range = Outcome.NONE
     for loc in optimal_locations:  # iterate only optimal choices
         child = gs.get_child_by_location(loc)
-        # update best range when latest exceeds prior
-        if max_range == Outcome.NONE or Outcome.is_better(max_range, child.range):
-            max_range = child.range
+        # update best lookahead when latest exceeds prior
+        if max_range == Outcome.NONE or Outcome.is_better(max_range, child.lookahead):
+            max_range = child.lookahead
 
-    # make a list of optimal choices with best range
+    # make a list of optimal choices with best lookahead
     best_locations = []
     for loc in optimal_locations:  # iterate only optimal choices
         child = gs.get_child_by_location(loc)
-        # copy child to list if it has the maximum best_range value
-        if child.range == max_range:
+        # copy child to list if it has the maximum best_lookahead value
+        if child.lookahead == max_range:
             # update the printout
             printout[loc] = printout[loc] + " best"
             best_locations.append(loc)
@@ -173,7 +173,7 @@ if __name__ == '__main__':
     max_turn = 8 if player == Player.X else 9
     gs = root_gs
 
-    display_game_state(gs)  # display initial empty spots
+    display_game_state(gs)  # display initial empty play area
 
     while gs.status == Status.UNDECIDED and turn <= max_turn:
 

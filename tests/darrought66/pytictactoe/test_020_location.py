@@ -1,5 +1,10 @@
 from darrought66.pytictactoe.location import loc, col, row
 
+"""
+            (0,0)=0 (0,1)=1 (0,2)=2
+            (1,0)=3 (1,1)=4 (1,2)=5
+            (2,0)=6 (2,1)=7 (2,2)=8
+"""
 
 def test_loc_01():
     assert loc(0, 0) == 0

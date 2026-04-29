@@ -1,0 +1,44 @@
+
+In this file I wish to rundown the basic workings of the game. What are the main classes and what role do thy play.
+
+location
+The play area for the game is a 3 by 3 grid. Players claim spots in this grid, in an attempt to make a row, column or
+diagonal and thereby win the game. The spots are numbered as follows. The number assigned to each spot is its location.
+
+            (0,0)=0 (0,1)=1 (0,2)=2
+            (1,0)=3 (1,1)=4 (1,2)=5
+            (2,0)=6 (2,1)=7 (2,2)=8
+
+Player
+The Player class represents the players, X and O. OPEN is used in the play area to mark an unclaimed spot.
+
+Status, Minimax & Lookahead
+Status tells the status of the game; whether it has been won, tied or still undecided. Status is specific to a user, so
+there is X_WON and O_WON. Minimax is calculated by finding the best the opposing player can obtain for each move and
+choosing the least of them. Lookahead indicates all possibilities that could come about from a given move. When the
+automated player works only on minimax, he seems to be acting randomly. That is because early in the game the minimax
+for every move is TIE. When the automated player also takes Lookahead into account then he seems to be acting
+strategically. He seems to comprehend that while 2 moves might have the same minimax value, one allows us to make
+mistakes that the other does not. Outcome and Lookahead are relative to the current player.
+
+GameState
+GameState is the main class of the application. It represents the game at a point in time. These are the variables in
+a GameState:
+
+   ordinal: serves as a unique key for the game state.
+   play_area: maps the 9 locations on the play area to the claiming player.
+   parent & children: the game states are assembled into a doubly linked tree that represents the entire solution space
+   of the game.
+   current_player & current_location: each child is different from its parent by one move and that is what these values
+   capture.
+
+evaluation
+In assembling the tree each game state is assigned a status. To do that it has to be inspected for wins ties. That is
+what the evaluation module does.
+
+console app
+The game can be played on the console directly from the generated tree. This is for debugging and testing.
+
+calc_size & debug_test_util
+These are both auxiliary pieces. calc_size calculates the size of the generated tree and the time it takes to generate
+it. debug_test_util allows you to print the tree out and inspect it, which is very useful for debugging.

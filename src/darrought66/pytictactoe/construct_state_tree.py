@@ -27,50 +27,50 @@ def grow_tree(gs: GameState, player: Player, depth: int):
     return
 
 
-# after the tree has been constructed then outcome values must be assigned to each node. the evaluations start from the
-## leaves and proceed towards the root.
+# after the tree has been constructed then minimax values must be assigned to each node. the evaluations start from the
+# leaves and proceed towards the root.
 def assign_outcome(gs: GameState) -> Outcome:
-    # if the game state outcome has not been calculated then calculate it
-    if gs.outcome == Outcome.NONE:
+    # if the game state minimax has not been calculated then calculate it
+    if gs.minimax == Outcome.NONE:
 
-        # calculate the outcome for each child that has not been calculated by recursive call
+        # calculate the minimax for each child that has not been calculated by recursive call
         for child in gs.children.values():
-            if child.outcome == Outcome.NONE:
+            if child.minimax == Outcome.NONE:
                 assign_outcome(child)
 
             # the best option assuming the other player makes the optimal choice
             gs = minimax(gs, child)
 
-        # this players outcome is the opposite of that for the other player.
-        gs.outcome = gs.outcome.reverse()
+        # this players minimax is the opposite of that for the other player.
+        gs.minimax = gs.minimax.reverse()
 
-        # the range is the union of child outcomes
-        gs.range = Outcome.NONE  # safety, should already be true
+        # the lookahead is the union of child minimax
+        gs.lookahead = Outcome.NONE  # safety, should already be true
         for child in gs.children.values():
-            gs = calc_range(gs, child)
+            gs.lookahead = calc_lookahead(gs, child)
 
-        # this players outcome is the opposite of that for the other player.
-        gs.range = gs.range.reverse()
+        # this players minimax is the opposite of that for the other player.
+        gs.lookahead = gs.lookahead.reverse()
 
-    return gs.outcome
+    return gs.minimax
 
 
-# calculate the range of possibilities from this state
-def calc_range(gs: GameState, child: GameState) -> GameState:
-    if gs.range == Outcome.NONE:
-        gs.range = child.outcome
+# calculate the lookahead
+def calc_lookahead(gs: GameState, child: GameState) -> Outcome:
+    if gs.lookahead == Outcome.NONE:
+        gs.lookahead = child.minimax
     else:
-        gs.range = Outcome.union(gs.range, child.outcome)
+        gs.lookahead = Outcome.union(gs.lookahead, child.minimax)
 
-    return gs
+    return gs.lookahead
 
 
 # calculate the best option assuming the other player will choose optimally
 def minimax(gs: GameState, child: GameState) -> GameState:
-    if gs.outcome == Outcome.NONE:
-        gs.outcome = child.outcome
-    elif Outcome.is_better(gs.outcome, child.outcome):
-        gs.outcome = child.outcome
+    if gs.minimax == Outcome.NONE:
+        gs.minimax = child.minimax
+    elif Outcome.is_better(gs.minimax, child.minimax):
+        gs.minimax = child.minimax
 
     return gs
 

@@ -15,6 +15,7 @@ def root_gs():
 def child(root_gs):
     root_gs.create_child(loc(1, 1), Player.X)
     child = root_gs.get_child_by_location(loc(1, 1))
+    assert child is not None
     return child
 
 
@@ -34,7 +35,7 @@ def test_game_state_03(root_gs, child):
 
 
 def test_game_state_04(root_gs, child):
-    assert child.spots[loc(1, 1)] == Player.X
+    assert child.play_area[loc(1, 1)] == Player.X
     return
 
 
@@ -45,7 +46,5 @@ def test_game_state_05(root_gs, child):
 
 
 def test_game_state_06(root_gs, child):
-    assert child is not None
-    print(str(child))
     assert str(child) == "(??? ___ ___ 4 X)  [- - -] [- X -] [- - -]"
     return

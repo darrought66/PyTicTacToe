@@ -44,5 +44,5 @@ def generation_time():
 
 #print_size()
 #print_max_nodes()
-#print_actual_size()
+print_actual_size()
 #generation_time()
